@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Blood Requests</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Your Blood Requests</h2>
+
+    {% if requests %}
+        <table border="1">
+            <tr>
+                <th>Request ID</th>
+                <th>Blood Type</th>
+                <th>Units</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Cancel</th>
+            </tr>
+            {% for req in requests %}
+            <tr>
+                <td>{{ req.request_id }}</td>
+                <td>{{ req.blood_type }}</td>
+                <td>{{ req.units_requested }}</td>
+                <td>{{ req.status }}</td>
+                <td>{{ req.request_date }}</td>
+                <td>
+                    <form method="POST" action="/cancel_request">
+                        <input type="hidden" name="request_id" value="{{ req.request_id }}">
+                        <input type="hidden" name="phone" value="{{ req.user_id }}">
+                        <button type="submit">Cancel</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No requests found.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blood Donation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <h1>Welcome to the Blood Donation System</h1>
+
+    <!-- Menu Container -->
+    <div class="menu-container">
+        <div class="menu-box register">
+            <a href="/register"><i class="fas fa-user"></i> Register</a>
+        </div>
+        <div class="menu-box request">
+            <a href="/request_blood"><i class="fas fa-tint"></i> Request Blood</a>
+        </div>
+        <div class="menu-box view">
+            <a href="/view_requests"><i class="fas fa-eye"></i> View My Requests</a>
+        </div>
+        <div class="menu-box donate">
+            <a href="/donate_blood"><i class="fas fa-hand-holding-heart"></i> Donate Blood</a>
+        </div>
+    </div>
+   
+    
+    <!-- Learn About Donation Section -->
+    <section class="donation-info">
+        <h2>🩸 Learn About Donation</h2>
+        <div class="donation-content">
+            <img src="https://cdn.pixabay.com/photo/2020/07/30/20/58/blood-5457892_1280.png" alt="Blood Donation Image">
+            <div class="donation-text">
+                <p><strong>One Donation Can Save Up to Three Lives</strong></p>
+                <p>After donating blood, the body works to replenish the blood loss. This stimulates the production of new blood cells and in turn, helps in maintaining good health.</p>
+            </div>
+        </div>
+
+        <!-- Blood Compatibility Table -->
+        <h2>Compatible Blood Type Donors</h2>
+        <table class="compatibility-table">
+            <tr>
+                <th>Blood Type</th>
+                <th>Donate Blood To</th>
+                <th>Receive Blood From</th>
+            </tr>
+            <tr><td>A+</td><td>A+, AB+</td><td>A+, A-, O+, O-</td></tr>
+            <tr><td>O+</td><td>O+, A+, B+, AB+</td><td>O+, O-</td></tr>
+            <tr><td>B+</td><td>B+, AB+</td><td>B+, B-, O+, O-</td></tr>
+            <tr><td>AB+</td><td>AB+</td><td>Everyone</td></tr>
+            <tr><td>A-</td><td>A+, A-, AB+, AB-</td><td>A-, O-</td></tr>
+            <tr><td>O-</td><td>Everyone</td><td>O-</td></tr>
+            <tr><td>B-</td><td>B+, B-, AB+, AB-</td><td>B-, O-</td></tr>
+            <tr><td>AB-</td><td>AB+, AB-</td><td>AB-, A-, B-, O-</td></tr>
+        </table>
+    </section>
+
+    <h1>🩸 Available Blood Stock</h1>
+    <table>
+        <tr>
+            <th>Blood Type</th>
+            <th>Blood Bank Name</th>
+            <th>Address</th>
+            <th>Units Available</th>
+        </tr>
+        {% for row in blood_data %}
+        <tr>
+            <td>{{ row.blood_type }}</td>
+            <td>{{ row.blood_bank_name }}</td>
+            <td>{{ row.baddress }}</td>
+            <td>{{ row.units_available }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

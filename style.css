@@ -1,0 +1,579 @@
+/* === CSS Variables === */
+:root {
+    --primary-color: #b71c1c;
+    --secondary-color: #ffebee;
+    --text-dark: #212121;
+    --text-white: #ffffff;
+    --shadow-light: 0 6px 12px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 10px rgba(0, 0, 0, 0.15);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+    --font-size-base: clamp(1rem, 2.5vw, 1.15rem);
+    --font-size-heading: clamp(1.75rem, 3.5vw, 2.25rem);
+    --font-size-subheading: clamp(1.25rem, 2.5vw, 1.5rem);
+    --input-focus-color: #d32f2f;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    margin: 1.5rem;
+    background: linear-gradient(135deg, #ffffff, var(--secondary-color));
+    background-image: linear-gradient(135deg, #ffffff, var(--secondary-color)),
+        url('https://images.unsplash.com/photo-1622253692010-333f2cbd3a48?auto=format&fit=crop&w=1470&q=80');
+    background-blend-mode: lighten;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-dark);
+    animation: fadeInBody 1.5s ease-in-out;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+
+@keyframes fadeInBody {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+    from { left: -100%; }
+    to { left: 150%; }
+}
+
+/* === Headings === */
+h1, h2 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    text-align: center;
+    margin: 3.5rem 0 1.5rem;
+    font-size: var(--font-size-heading);
+    animation: textReveal 1.2s ease-in-out;
+}
+
+h2 {
+    font-size: var(--font-size-subheading);
+}
+
+@keyframes textReveal {
+    from { opacity: 0; transform: translateY(25px); letter-spacing: 0.15em; }
+    to { opacity: 1; transform: translateY(0); letter-spacing: normal; }
+}
+
+/* === Menu Container === */
+.menu-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    position: relative;
+    animation: slideIn 1s ease-in-out;
+}
+
+/* Blood droplet pseudo-elements */
+.menu-container::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Blood_droplet_icon.svg/120px-Blood_droplet_icon.svg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+}
+
+/* === Menu Boxes === */
+.menu-box {
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition);
+    animation: fadeInUp 0.8s ease-in-out forwards;
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+}
+
+.menu-box:nth-child(1) { animation-delay: 0.2s; }
+.menu-box:nth-child(2) { animation-delay: 0.4s; }
+.menu-box:nth-child(3) { animation-delay: 0.6s; }
+.menu-box:nth-child(4) { animation-delay: 0.8s; }
+
+.menu-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-light);
+    animation: pulse 0.5s ease-in-out;
+}
+
+/* Specific menu box styles */
+.register { background: linear-gradient(145deg, #FFEB3B, #FDD835); }
+.register:hover { background: linear-gradient(145deg, #FBC02D, #F9A825); }
+.request { background: linear-gradient(145deg, #4CAF50, #43A047); }
+.request:hover { background: linear-gradient(145deg, #388E3C, #2E7D32); }
+.view { background: linear-gradient(145deg, #87CEEB, #4FC3F7); }
+.view:hover { background: linear-gradient(145deg, #48C9B0, #26A69A); }
+.donate { background: linear-gradient(145deg, #F44336, #E53935); }
+.donate:hover { background: linear-gradient(145deg, #D32F2F, #C62828); }
+
+.menu-box a {
+    color: var(--text-white);
+    text-decoration: none;
+    display: block;
+}
+
+/* === Donation Info Section === */
+.donation-info {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    animation: slideIn 1s ease-in-out;
+}
+
+.donation-info h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.donation-content {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.donation-content img {
+    width: 200px;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    object-fit: cover;
+}
+
+.donation-text p {
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+/* === Compatibility Table === */
+.compatibility-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1rem;
+    background: #ffffff;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.compatibility-table th,
+.compatibility-table td {
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+    border: none;
+}
+
+.compatibility-table th {
+    background: var(--primary-color);
+    color: var(--text-white);
+    font-size: 1.1rem;
+}
+
+.compatibility-table td {
+    border-bottom: 1px solid #eee;
+}
+
+.compatibility-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.compatibility-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* === Forms === */
+form {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: var(--shadow-medium);
+}
+
+/* === Table === */
+table {
+    width: 95%;
+    max-width: 1000px;
+    margin: 2.5rem auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: center;
+    border: none;
+}
+
+th {
+    background: var(--primary-color);
+    color: var(--text-white);
+    font-size: 1.15rem;
+}
+
+td {
+    border-bottom: 1px solid #eee;
+}
+
+tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* === Inputs and Buttons === */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #ffffff;
+    font-size: var(--font-size-base);
+    transition: var(--transition);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-color);
+    box-shadow: 0 0 5px rgba(183, 28, 28, 0.3);
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(145deg, #e60000, var(--primary-color));
+    color: var(--text-white);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: linear-gradient(145deg, #c51111, #9b1515);
+    transform: translateY(-2px);
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: skewX(-20deg);
+    animation: shimmer 2.5s infinite;
+}
+
+/* === Register Section === */
+.register-section {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 245, 245, 0.98));
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    animation: slideIn 1s ease-in-out;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-section::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Blood_droplet_icon.svg/120px-Blood_droplet_icon.svg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    filter: blur(2px);
+}
+
+.register-section h2 {
+    font-size: var(--font-size-subheading);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.register-section p {
+    font-size: var(--font-size-base);
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+/* === Register Form === */
+.register-form {
+    background: #ffffff;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    z-index: 1;
+}
+
+.form-table {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.form-row label {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.form-row input,
+.form-row select {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.85rem;
+    font-size: var(--font-size-base);
+    transition: var(--transition);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-row input:focus,
+.form-row select:focus {
+    background: #ffffff;
+    border-color: var(--input-focus-color);
+    box-shadow: 0 0 8px rgba(183, 28, 28, 0.2);
+}
+
+.form-row input:invalid:not(:placeholder-shown) {
+    border-color: #d32f2f;
+    background: #fff4f4;
+}
+
+.form-row input:valid {
+    border-color: #4caf50;
+    background: #f4fff4;
+}
+
+.form-row .error-message {
+    color: #d32f2f;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.form-row input:invalid:not(:placeholder-shown) + .error-message {
+    display: block;
+}
+
+.form-submit {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.form-submit button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.15rem;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #e60000, var(--primary-color));
+    transition: var(--transition);
+}
+
+.form-submit button:hover {
+    background: linear-gradient(145deg, #c51111, #9b1515);
+    transform: translateY(-3px);
+}
+
+.form-submit button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+    body {
+        margin: 1rem;
+    }
+
+    .menu-container {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+
+    .donation-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .donation-content img {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .register-section,
+    .register-form,
+    form {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: clamp(1.5rem, 5vw, 1.8rem); }
+    h2 { font-size: clamp(1.2rem, 4vw, 1.4rem); }
+    .menu-box { font-size: 1.1rem; }
+    button { font-size: 1rem; }
+    .register-section { padding: 1.25rem; }
+    .register-form { padding: 1.25rem; }
+    .form-row input,
+    .form-row select { padding: 0.75rem; }
+}
+body {
+    background-image: url('image%20.jpg.jpg'); /* fixed space issue in filename */
+    background-size: 1700px; /* makes the image smaller */
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* Add light overlay effect */
+    background-color: rgba(214, 184, 184, 0.6); /* light shade */
+    background-blend-mode: var(--shadow-light);
+    
+
+    font-family: Arial, sans-serif;
+    color: #310808;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+
+    /* Removed background image */
+    background-color: #d8c6c6; /* Light neutral background instead */
+    color: #333;
+}
+
+/* Center the form on the page */
+.center-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Form box styling */
+.form-box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: crimson;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: rgb(211, 202, 202);
+}

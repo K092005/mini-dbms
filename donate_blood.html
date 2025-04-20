@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donate Blood</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="center-wrapper">
+        <div class="form-box">
+
+            <h2>Become a Hero. Donate Blood Today!</h2>
+            <p>Your donation can save lives. Select a nearby blood bank and help make a difference.</p>
+
+            <form method="POST">
+                <label>Your Name:</label><br>
+                <input type="text" name="name" required><br><br>
+
+                <label>Phone Number:</label><br>
+                <input type="text" name="phone" required><br><br>
+
+                <label>Blood Type:</label><br>
+                <input type="text" name="blood_type" required placeholder="e.g. A+, B-, O+"><br><br>
+
+                <label>Units to Donate:</label><br>
+                <input type="number" name="units" min="1" required><br><br>
+
+                <label>Choose Blood Bank:</label><br>
+                <select name="blood_bank_id" required>
+                    {% for bank in banks %}
+                        <option value="{{ bank.blood_bank_id }}">{{ bank.blood_bank_name }}</option>
+                    {% endfor %}
+                </select><br><br>
+
+                <button type="submit">Donate Now</button>
+            </form>
+
+            <br>
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
